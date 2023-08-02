@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - aws cloudformation package --template-file search-photos.yaml --s3-bucket albumlambdabucket --output-template-file outputTemplate.yaml
+artifacts:
+  files:
+    - search-photos.yaml
+    - outputTemplate.yaml

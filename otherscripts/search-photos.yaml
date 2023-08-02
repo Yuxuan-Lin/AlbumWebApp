@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  searchphotos:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.10
+      CodeUri: src_search/
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::993611456293:role/service-role/search-photos-role-d2ojh1u9'
+      Layers:
+        - 'arn:aws:lambda:us-east-1:993611456293:layer:mylayer:2'
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto
+  indexphotos:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.10
+      CodeUri: src_index/
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::993611456293:role/AlbumRole'
+      Layers:
+        - 'arn:aws:lambda:us-east-1:993611456293:layer:mylayer:2'
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto
